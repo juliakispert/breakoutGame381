@@ -6,6 +6,7 @@ import edu.macalester.graphics.*;
 import java.awt.*;
 import java.util.Random;
 
+// adding a comment here
 
 public class Ball {
     public static final double BALL_RADIUS = 10;
