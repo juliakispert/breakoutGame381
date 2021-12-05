@@ -42,14 +42,14 @@ public class Paddle {
 
     /* sets paddle position to mouse (this is what the lambda expression calls in BreakoutGame*/
     public void setCurrentPosition() {
-        // Point p = MouseInfo.getPointerInfo().getLocation();
-        // // 600 is the canvas width
-        // if (p.x > BreakoutGame.getCanvasWidth() - width) {
-        //     currentXPosition = BreakoutGame.getCanvasWidth() - width;
-        // } else {
-        //     currentXPosition = p.x;
-        // }
-        // paddle.setPosition(currentXPosition, centerY);
+        Point p = MouseInfo.getPointerInfo().getLocation();
+        // 600 is the canvas width
+        if (p.x > BreakoutGame.getCanvasWidth() - width) {
+            currentXPosition = BreakoutGame.getCanvasWidth() - width;
+        } else {
+            currentXPosition = p.x;
+        }
+        paddle.setPosition(currentXPosition, centerY);
     }
 
     /* following methods are get methods returning positions of the paddle */
