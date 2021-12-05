@@ -1,68 +1,42 @@
 package breakout;
 
-import edu.macalester.graphics.*;
+import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Point;
 import edu.macalester.graphics.Rectangle;
 
-import java.awt.*;
 
-public class Paddle {
-    private double centerX;
-    private double centerY;
-    private double width;
-    private double height;
-    private double currentXPosition;
+/**
+ * Represent a paddle that can be drawn on the screen.
+ */
+public class Paddle{
+    private Rectangle paddleShape;
 
-    private Color paddleColor = new Color(0);
-    private Rectangle paddle;
-    /* creates paddle and gives it size and position*/
+     /**
+     * Constructs a paddle, a rectangle with width and height that depends on the canvas size,
+     * and places it almost at the bottom of the canvas.
+     */
+    public Paddle(CanvasWindow canvas){
+        paddleShape = new Rectangle(0, 0, canvas.getWidth() * 0.2,  canvas.getHeight() * 0.01);
+        canvas.add(paddleShape);
+        paddleShape.setCenter(canvas.getWidth()/2, canvas.getHeight() * 0.85 );
+    }   
 
-    public Paddle(double centerX, double centerY, double width, double height) {
-        this.centerX = centerX;
-        this.centerY = centerY;
-        currentXPosition = centerX;
-        this.width = width;
-        this.height = height;
-        createPaddleDrawing();
+    /**
+     * Moves the paddle horizontally to the x-coordinate of the given position.
+     */
+    public void movePaddle(Point position){
+        paddleShape.setX(position.getX() - paddleShape.getWidth()/2);
+    }    
+
+    public Rectangle getPaddleShape(){
+        return paddleShape;
     }
 
-    /* creates paddle graphic */
-    public void createPaddleDrawing() {
-        this.paddle = new Rectangle(centerX, centerY, width, height);
-        paddle.setFillColor(paddleColor);
-        paddle.setFilled(true);
-        paddle.setStrokeColor(paddleColor);
-        paddle.setStroked(true);
-    }
-
-    /* adds paddle to canvas*/
-    public void addToCanvas(CanvasWindow canvas) {
-        canvas.add(paddle);
-    }
-
-    /* sets paddle position to mouse (this is what the lambda expression calls in BreakoutGame*/
-    public void setCurrentPosition() {
-        Point p = MouseInfo.getPointerInfo().getLocation();
-        // 600 is the canvas width
-        if (p.x > BreakoutGame.getCanvasWidth() - width) {
-            currentXPosition = BreakoutGame.getCanvasWidth() - width;
-        } else {
-            currentXPosition = p.x;
-        }
-        paddle.setPosition(currentXPosition, centerY);
-    }
-
-    /* following methods are get methods returning positions of the paddle */
-    public double getLeftCornerX() {
-        return currentXPosition;
-    }
-
-    public double getRightCornerX() {
-        return currentXPosition + width;
-    }
-
-    public double getYOfTop() {
-        return centerY + height / 2;
+    /**
+     * Given a canvas and a point, this returns true if the graphical object at that point is a paddle.
+     */
+    public boolean checkPaddle(CanvasWindow canvas, Point point1){
+        return ((canvas.getElementAt(point1)) != null  && canvas.getElementAt(point1).getSize().getX() == paddleShape.getWidth());
     }
 
 }
