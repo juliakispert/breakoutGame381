@@ -38,5 +38,4 @@ public class Paddle{
     public boolean checkPaddle(CanvasWindow canvas, Point point1){
         return ((canvas.getElementAt(point1)) != null  && canvas.getElementAt(point1).getSize().getX() == paddleShape.getWidth());
     }
-
 }

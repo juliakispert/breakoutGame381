@@ -16,7 +16,6 @@ public class Ball {
     private double speedY;
     private Ellipse ballShape;
 
-    
     public Ball(
             double centerX,
             double centerY,
@@ -143,6 +142,4 @@ public class Ball {
     public Ellipse getBallShape() {
        return ballShape;
     }
-
-
 }

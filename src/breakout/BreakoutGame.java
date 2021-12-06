@@ -17,7 +17,6 @@ public class BreakoutGame {
     private int round = 0;
     private Ball ball;
 
-
     public BreakoutGame() {
         canvas = new CanvasWindow("Breakout!", CANVAS_WIDTH, CANVAS_HEIGHT);
         paddle = new Paddle(canvas);
@@ -28,10 +27,9 @@ public class BreakoutGame {
 
     public void run(){
         
-        ball = new Ball(canvas.getWidth()/2, canvas.getHeight()/2, INTIAL_BALL_SPEED);
+        ball = new Ball(CANVAS_WIDTH/2, CANVAS_HEIGHT/2, INTIAL_BALL_SPEED);
         ball.addToCanvas(canvas);
         restartRound();
-        
 
        canvas.animate(() -> {
             if (brickManager.getTotalBricks() != brickManager.getNumOfBricksRemoved()){
@@ -45,7 +43,6 @@ public class BreakoutGame {
     public static void main(String[] args){
         new BreakoutGame();
     }
-
 
     /**
      * Takes in a string input and shows this to the user as GraphicText. It also
@@ -64,7 +61,7 @@ public class BreakoutGame {
      */
     private void gameInProgress(){
         if (round < 3){
-            if (!(ball.getCenterY() > paddle.getPaddleShape().getY() + canvas.getHeight() * .1)){
+            if (!(ball.getCenterY() > paddle.getPaddleShape().getY() + CANVAS_HEIGHT * .1)){
                 for (int i = 0; i<100; i++){
                     ball.updatePosition(canvas, 0.1, brickManager, paddle); //making the physics time step smaller.
                 }
@@ -91,5 +88,4 @@ public class BreakoutGame {
             canvas.pause(3000);
         }
     }
-
 }
