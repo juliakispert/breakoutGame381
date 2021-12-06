@@ -1,7 +1,7 @@
 package breakout;
 
 import edu.macalester.graphics.*;
-
+import edu.macalester.graphics.Point;
 
 import java.awt.*;
 import java.util.Random;
