@@ -16,7 +16,7 @@ public class Paddle{
      * and places it almost at the bottom of the canvas.
      */
     public Paddle(CanvasWindow canvas){
-        paddleShape = new Rectangle(0, 0, canvas.getWidth() * 0.2,  canvas.getHeight() * 0.01);
+        paddleShape = new Rectangle(0, 0, canvas.getWidth() * 0.2,  canvas.getHeight() * 0.03);
         canvas.add(paddleShape);
         paddleShape.setCenter(canvas.getWidth()/2, canvas.getHeight() * 0.85 );
     }   

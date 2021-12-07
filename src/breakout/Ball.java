@@ -1,43 +1,33 @@
 package breakout;
 
 import edu.macalester.graphics.*;
-import edu.macalester.graphics.Point;
 
-import java.awt.*;
-import java.util.Random;
+public class Ball extends Ellipse {
+    public static final double BALL_RADIUS = 10;
+    private double centerX, centerY;
+    private double speedX, speedY;
 
-// adding a comment here
+    public Ball(double centerX, double centerY, double initialSpeed) {
+        super(centerX-BALL_RADIUS, centerY-BALL_RADIUS, 2*BALL_RADIUS, 2*BALL_RADIUS);  
 
-public class Ball {
-    public static final double BALL_RADIUS = 5;
-    private double centerX;
-    private double centerY;
-    private double speedX;
-    private double speedY;
-    private Ellipse ballShape;
-
-    public Ball(
-            double centerX,
-            double centerY,
-            double initialSpeed
-            ) {
         this.centerX = centerX;
         this.centerY = centerY;
-        double angle = (Math.random() * (70-20)) + 20 ;
+
+        double angle = (Math.random() * 50) + 20;
         speedX = initialSpeed * Math.cos(Math.toRadians(angle));
         speedY = initialSpeed * Math.sin(Math.toRadians(angle));
-        ballShape = new Ellipse(centerX-BALL_RADIUS, centerY-BALL_RADIUS, 2*BALL_RADIUS, 2*BALL_RADIUS);
-        ballShape.setFilled(true);
+
+        this.setFilled(true);
     }
 
     /**
      * This method updates the ball's position, and also deals with what happens when the ball
-     * hit the wall, the paddle, or the bricks.  
+     * hits the wall, the paddle, or the bricks.  
      */
     public void updatePosition(CanvasWindow canvas, double dt, BrickManager brickManager, Paddle paddle){
         centerX +=  speedX * dt;
         centerY +=  speedY * dt;
-        ballShape.setCenter(centerX, centerY);
+        this.setCenter(centerX, centerY);
         hitWall(canvas);
         if (!hitPaddle(canvas, paddle)){
             hitBricks(brickManager);
@@ -59,7 +49,7 @@ public class Ball {
     
     /**
      * Given a brick manager object, this method checks 4 pairs of nearby corners,
-     * remove any bricks there as well as change the direction of the ball too.
+     * removes any bricks there as well as changing the direction of the ball.
      */
     private void hitBricks(BrickManager brickManager){
         
@@ -90,8 +80,8 @@ public class Ball {
     }
 
     /**
-     * Given a canvas, this returns true if either corners of the ball touches the paddle.
-     * It also makes the ball bounces off the paddle.
+     * Given a canvas, this returns true if either corner of the ball touches the paddle.
+     * It also makes the ball bounce off the paddle.
      */
     private boolean hitPaddle(CanvasWindow canvas, Paddle paddle){
         
@@ -112,23 +102,9 @@ public class Ball {
      * This resets the position of the ball to the middle of the given canvas.
      */
     public void resetPosition(CanvasWindow canvas){
-        ballShape.setCenter(canvas.getWidth()/2, canvas.getHeight()/2);
+        this.setCenter(canvas.getWidth()/2, canvas.getHeight()/2);
         centerX = canvas.getWidth()/2;
         centerY = canvas.getHeight()/2;
-    }
-
-    /**
-     * Adds the cannonball's shape to the given canvas.
-     */
-    public void addToCanvas(CanvasWindow canvas) {
-        canvas.add(ballShape);
-    }
-
-    /**
-     * Removes the cannonball's shape from the given canvas.
-     */
-    public void removeFromCanvas(CanvasWindow canvas) {
-        canvas.remove(ballShape);
     }
 
     public double getCenterX(){
@@ -137,9 +113,5 @@ public class Ball {
 
     public double getCenterY(){
         return centerY;
-    }
-
-    public Ellipse getBallShape() {
-       return ballShape;
     }
 }

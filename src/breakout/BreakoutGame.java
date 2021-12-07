@@ -10,7 +10,7 @@ import edu.macalester.graphics.GraphicsText;
 public class BreakoutGame {
     private static final int CANVAS_WIDTH = 600;
     private static final int CANVAS_HEIGHT = 800;
-    private static final double INTIAL_BALL_SPEED = 0.5; 
+    private static final double INTIAL_BALL_SPEED = 0.75; 
     private CanvasWindow canvas;
     private Paddle paddle;
     private BrickManager brickManager;
@@ -28,7 +28,7 @@ public class BreakoutGame {
     public void run(){
         
         ball = new Ball(CANVAS_WIDTH/2, CANVAS_HEIGHT/2, INTIAL_BALL_SPEED);
-        ball.addToCanvas(canvas);
+        canvas.add(ball);
         restartRound();
 
        canvas.animate(() -> {
@@ -52,7 +52,7 @@ public class BreakoutGame {
         GraphicsText text = new GraphicsText(string);
         text.setCenter(canvas.getCenter());
         canvas.add(text);
-        ball.removeFromCanvas(canvas);
+        canvas.remove(ball);
     }
 
     /**

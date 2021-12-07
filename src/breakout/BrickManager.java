@@ -9,7 +9,7 @@ import edu.macalester.graphics.Rectangle;
 
 /**
 * this class adds bricks to the screen, and removes them. 
-* Inspired by bubbleManger from bubble blitz assignment/ 
+* Inspired by bubbleManager from bubble blitz assignment/ 
 * 
 */
 public class BrickManager {
@@ -28,7 +28,7 @@ public class BrickManager {
      */
     public BrickManager(CanvasWindow canvas) {
         this.canvas = canvas;
-        brickWidth = Math.round(canvas.getWidth()*.11); 
+        brickWidth = Math.round(canvas.getWidth()*.114); 
         brickHeight = Math.round(canvas.getWidth()*.05); 
         brickSpacing = Math.round(canvas.getWidth()*.025); 
         generateBrick();
@@ -55,8 +55,8 @@ public class BrickManager {
     }
 
      /**
-    * removes a graphical object at the first point. 
-    * then checks whether there is still a graphical object left at the second point (removes if present)
+    * Removes a graphical object at the first point. 
+    * Then checks whether there is still a graphical object left at the second point (removes if present)
     * tracks objects it has removed.
     */
     public void removeBricks(Point point1, Point point2){
@@ -69,7 +69,7 @@ public class BrickManager {
     }
 
     /**
-    * method returns true when there are graphical objects at both points.
+    * Method returns true when there are graphical objects at both points.
      */
     public boolean checkNull(Point pos1, Point pos2){
         return (canvas.getElementAt(pos1) != null && canvas.getElementAt(pos2) != null);
