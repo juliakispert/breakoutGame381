@@ -61,7 +61,7 @@ public class BreakoutGame {
      */
     private void gameInProgress(){
         if (round < 3){
-            if (!(ball.getCenterY() > paddle.getPaddleShape().getY() + CANVAS_HEIGHT * .1)){
+            if (!(ball.getCenterY() > paddle.getY() + CANVAS_HEIGHT * .1)){
                 for (int i = 0; i<100; i++){
                     ball.updatePosition(canvas, 0.1, brickManager, paddle); //making the physics time step smaller.
                 }
