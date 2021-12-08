@@ -4,82 +4,84 @@ import java.awt.Color;
 
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Point;
-import edu.macalester.graphics.Rectangle;
-
 
 /**
-* this class adds bricks to the screen, and removes them. 
-* Inspired by bubbleManager from bubble blitz assignment/ 
-* 
-*/
+ * this class adds bricks to the screen, and removes them.
+ * Inspired by bubbleManager from bubble blitz assignment/
+ * 
+ */
 public class BrickManager {
 
     private CanvasWindow canvas;
 
     private static final int NUM_BRICK_IN_A_ROW = 7;
-    private static final int NUM_ROW = 7; // equal to the length of brick_colors 
-    private double brickWidth, brickHeight, brickSpacing;  
-    private static final Color[] BRICK_COLORS = {Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.CYAN, Color.MAGENTA, Color.PINK};
-    private int numOfBricksRemoved = 0;
-
+    private static final int NUM_ROW = 7; // equal to the length of brick_colors
+    private double brickSpacingHorizontal, brickSpacingVertical;
+    private static final Color[] BRICK_COLORS = { Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.CYAN,
+            Color.MAGENTA, Color.PINK };
+    private int numOfBricksRemoved;
 
     /**
      * Constructs a brick manager for the specified window object.
      */
     public BrickManager(CanvasWindow canvas) {
         this.canvas = canvas;
-        brickWidth = Math.round(canvas.getWidth()*.114); 
-        brickHeight = Math.round(canvas.getWidth()*.05); 
-        brickSpacing = Math.round(canvas.getWidth()*.025); 
-        generateBrick();
+        brickSpacingHorizontal = Math.round(canvas.getWidth() * .025);
+        ;
+        brickSpacingVertical = Math.round(canvas.getWidth() * .05) + brickSpacingHorizontal;
+        numOfBricksRemoved = 0;
+        generateBrickWall();
     }
 
     /**
      * Creates the bricks and adds them on to the screen.
      */
-    public void generateBrick(){
-        double x = brickSpacing;
-        double y = canvas.getHeight()*.1;  
-        for(int i=0; i < NUM_ROW; i++){
+    public void generateBrickWall() {
+        double x = brickSpacingHorizontal;
+        double y = canvas.getHeight() * .1;
+        for (int i = 0; i < NUM_ROW; i++) {
             Color BrickColor = BRICK_COLORS[i];
-            for(int j =0; j<NUM_BRICK_IN_A_ROW; j++){
-                Rectangle brick = new Rectangle(x, y, brickWidth, brickHeight);
+            for (int j = 0; j < NUM_BRICK_IN_A_ROW; j++) {
+                Brick brick = new Brick(x, y, canvas);
                 brick.setFilled(true);
-                brick.setFillColor(BrickColor); 
+                brick.setFillColor(BrickColor);
                 canvas.add(brick);
-                x += brickWidth + brickSpacing; 
+                x += brick.getBrickWidth() + brickSpacingHorizontal;
             }
-            y+=brickSpacing*0.5+brickHeight; 
-            x=brickSpacing; 
+            y += brickSpacingVertical;
+            x = brickSpacingHorizontal;
         }
     }
 
-     /**
-    * Removes a graphical object at the first point. 
-    * Then checks whether there is still a graphical object left at the second point (removes if present)
-    * tracks objects it has removed.
-    */
-    public void removeBricks(Point point1, Point point2){
+    /**
+     * Removes a graphical object at the first point.
+     * Then checks whether there is still a graphical object left at the second
+     * point (removes if present).
+     * Checks two points as a ball can hit two bricks at the same time based on the
+     * differences in sizes.
+     * tracks bricks it has removed.
+     */
+    public void removeBricks(Point point1, Point point2) {
         canvas.remove(canvas.getElementAt(point1));
         numOfBricksRemoved = numOfBricksRemoved + 1;
-        if (canvas.getElementAt(point2) != null){
+        if (canvas.getElementAt(point2) instanceof Brick) {
             canvas.remove(canvas.getElementAt(point2));
             numOfBricksRemoved = numOfBricksRemoved + 1;
         }
     }
 
     /**
-    * Method returns true when there are graphical objects at both points.
+     * Method returns true when there are graphical objects at both points.
      */
-    public boolean checkNull(Point pos1, Point pos2){
-        return (canvas.getElementAt(pos1) != null && canvas.getElementAt(pos2) != null);
+    public boolean checkIfBrick(Point pos1, Point pos2) {
+        return (canvas.getElementAt(pos1) instanceof Brick && canvas.getElementAt(pos2) instanceof Brick);
     }
 
-    public int getNumOfBricksRemoved(){
+    public int getNumOfBricksRemoved() {
         return numOfBricksRemoved;
     }
 
-    public int getTotalBricks(){
+    public int getTotalBricks() {
         return NUM_BRICK_IN_A_ROW * NUM_ROW;
     }
 
