@@ -87,8 +87,10 @@ public class Ball extends Ellipse {
         
         Point bottomLeft = new Point(centerX - BALL_RADIUS, centerY + BALL_RADIUS);
         Point bottomRight = new Point(centerX + BALL_RADIUS, centerY + BALL_RADIUS);
+        Point topLeft = new Point(centerX - BALL_RADIUS, centerY - BALL_RADIUS);
+        Point topRight = new Point(centerX + BALL_RADIUS, centerY - BALL_RADIUS);
 
-        if(canvas.getElementAt(bottomLeft) instanceof Paddle || canvas.getElementAt(bottomRight) instanceof Paddle){
+        if(canvas.getElementAt(bottomLeft) instanceof Paddle || canvas.getElementAt(bottomRight) instanceof Paddle || canvas.getElementAt(topLeft) instanceof Paddle || canvas.getElementAt(topRight) instanceof Paddle){
             speedY *=-1; 
             return true; 
         }else{
