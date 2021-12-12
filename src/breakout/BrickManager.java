@@ -45,6 +45,7 @@ public class BrickManager {
                 Brick brick = new Brick(x, y, canvas);
                 brick.setFilled(true);
                 brick.setFillColor(BrickColor);
+                brick.setStroked(false);
                 canvas.add(brick);
                 x += brick.getBrickWidth() + brickSpacingHorizontal;
             }

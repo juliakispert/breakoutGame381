@@ -1,5 +1,7 @@
 package breakout;
 
+import java.awt.Color;
+
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsText;
 
@@ -19,6 +21,7 @@ public class BreakoutGame {
     public BreakoutGame() {
         canvas = new CanvasWindow("Breakout!", CANVAS_WIDTH, CANVAS_HEIGHT);
         paddle = new Paddle(canvas);
+        paddle.setFillColor(Color.BLACK);
         brickManager = new BrickManager(canvas);
         canvas.onMouseMove(event -> paddle.movePaddle(event.getPosition()));
         run();
