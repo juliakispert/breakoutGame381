@@ -14,8 +14,8 @@ public class BrickManager {
 
     private CanvasWindow canvas;
 
-    private static final int NUM_BRICK_IN_A_ROW = 7;
-    private static final int NUM_ROW = 7; // equal to the length of brick_colors
+    private static final int NUM_BRICK_IN_A_ROW = 1;
+    private static final int NUM_ROW = 1; // equal to the length of brick_colors
     private double brickSpacingHorizontal, brickSpacingVertical;
     private static final Color[] BRICK_COLORS = { Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.CYAN,
             Color.MAGENTA, Color.PINK };

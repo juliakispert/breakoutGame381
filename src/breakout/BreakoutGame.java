@@ -3,7 +3,6 @@ package breakout;
 import java.awt.Color;
 
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.GraphicsText;
 
 /**
  * The game of Breakout.
@@ -40,7 +39,7 @@ public class BreakoutGame {
             if (brickManager.getTotalBricks() != brickManager.getNumOfBricksRemoved()) {
                 gameInProgress();
                 if (brickManager.getTotalBricks() == brickManager.getNumOfBricksRemoved()) {
-                    tellUserGameHasEnded("You won!", ball);
+                    gameOver(); 
                 }
             }
         });
@@ -48,17 +47,6 @@ public class BreakoutGame {
 
     public static void main(String[] args) {
         new BreakoutGame();
-    }
-
-    /**
-     * Takes in a string input and shows this to the user as GraphicText. It also
-     * removes the ball that it takes in as a parameter too.
-     */
-    private void tellUserGameHasEnded(String string, Ball ball) {
-        GraphicsText text = new GraphicsText(string);
-        text.setCenter(canvas.getCenter());
-        canvas.add(text);
-        canvas.remove(ball);
     }
 
     /**
@@ -77,11 +65,18 @@ public class BreakoutGame {
                 round = round + 1;
             }
             if (round == 3) {
-                tellUserGameHasEnded("You lost!", ball);
+                gameOver(); 
             }
         }
     }
-
+    /**
+    * removes paddle and ball from screen singifiying the user either won or loss the game 
+    * as the game is over
+    */
+    private void gameOver(){
+        canvas.remove(ball);
+        canvas.remove(paddle);
+    }
     /**
      * This method check that if less than 2 rounds have been played, it will
      * reposition the ball into the middle of the canvas and also pauses for
