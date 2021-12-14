@@ -22,7 +22,9 @@ public class BreakoutGame {
         paddle = new Paddle(canvas);
         paddle.setFillColor(Color.BLACK);
         brickManager = new BrickManager(canvas);
-        canvas.onMouseMove(event -> paddle.movePaddle(event.getPosition()));
+        ball = new Ball(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, INTIAL_BALL_SPEED);
+        canvas.add(ball);
+        restartRound();
         run();
     }
 
@@ -31,10 +33,9 @@ public class BreakoutGame {
     */
     public void run() {
 
-        ball = new Ball(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, INTIAL_BALL_SPEED);
-        canvas.add(ball);
-        restartRound();
+       
 
+        canvas.onMouseMove(event -> paddle.movePaddle(event.getPosition()));
         canvas.animate(() -> {
             if (brickManager.getTotalBricks() != brickManager.getNumOfBricksRemoved()) {
                 gameInProgress();
