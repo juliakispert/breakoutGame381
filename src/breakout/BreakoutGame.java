@@ -1,6 +1,7 @@
 package breakout;
 
 import java.awt.Color;
+import java.util.Scanner;
 
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsText;
@@ -20,6 +21,13 @@ public class BreakoutGame {
 
     public BreakoutGame() {
         canvas = new CanvasWindow("Breakout!", CANVAS_WIDTH, CANVAS_HEIGHT);
+        startGame(); 
+    }
+    
+    /*
+    * sets up the start of the game by creating all elements 
+    */
+    public void startGame(){
         paddle = new Paddle(canvas);
         paddle.setFillColor(Color.BLACK);
         brickManager = new BrickManager(canvas);
@@ -30,7 +38,7 @@ public class BreakoutGame {
     }
 
     /*
-    * starts game and sets up a new round and basic win/lose rules
+    * runs main movememnt function of game
     */
     public void run() {
         canvas.onMouseMove(event -> paddle.movePaddle(event.getPosition()));
@@ -39,7 +47,6 @@ public class BreakoutGame {
                 gameInProgress();
                 if (brickManager.getTotalBricks() == brickManager.getNumOfBricksRemoved()) {
                     tellUserGameHasEnded("You won!", ball);
-                    gameOver(); 
                 }
             }
         });
@@ -66,7 +73,6 @@ public class BreakoutGame {
             }
             if (round == 3) {
                 tellUserGameHasEnded("You lost. Game Over.", ball);
-                gameOver(); 
             }
         }
     }
@@ -74,10 +80,20 @@ public class BreakoutGame {
     * removes paddle and ball from screen singifiying the user either won or loss the game 
     * as the game is over
     */
-    private void gameOver(){
-        canvas.remove(ball);
-        canvas.remove(paddle);
-    }
+    // private void gameOver(){
+    //     canvas.pause(3000); 
+    //     canvas.removeAll();
+    //     GraphicsText text = new GraphicsText("Game Over");
+    //     text.setCenter(canvas.getCenter());
+    //     canvas.add(text);
+    //     playAgain(); 
+    // }
+
+    // public void playAgain(){
+    //     canvas.pause(3000);
+    //     canvas.removeAll();
+    //     startGame();
+    // }
     /**
      * This method check that if less than 2 rounds have been played, it will
      * reposition the ball into the middle of the canvas and also pauses for
