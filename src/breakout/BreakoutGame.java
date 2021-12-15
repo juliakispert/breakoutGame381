@@ -1,7 +1,6 @@
 package breakout;
 
 import java.awt.Color;
-import java.util.Scanner;
 
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsText;
@@ -76,24 +75,6 @@ public class BreakoutGame {
             }
         }
     }
-    /**
-    * removes paddle and ball from screen singifiying the user either won or loss the game 
-    * as the game is over
-    */
-    // private void gameOver(){
-    //     canvas.pause(3000); 
-    //     canvas.removeAll();
-    //     GraphicsText text = new GraphicsText("Game Over");
-    //     text.setCenter(canvas.getCenter());
-    //     canvas.add(text);
-    //     playAgain(); 
-    // }
-
-    // public void playAgain(){
-    //     canvas.pause(3000);
-    //     canvas.removeAll();
-    //     startGame();
-    // }
     /**
      * This method check that if less than 2 rounds have been played, it will
      * reposition the ball into the middle of the canvas and also pauses for
