@@ -1,19 +1,25 @@
-# breakoutGame381
+# BreakoutGame381
 
-This implementation is based of the Comp-127 Breakout Game Homework assignment. 
+### This implementation is based of the Comp-127 Breakout Game Homework assignment. 
 
 Breakout was developed in 1976 by Steve Wozniak, shortly before he cofounded Apple Computer, Inc. He cited the experience of building the game as part of his inspiration in creating the Apple ][, the first commercially viable home computer.
 
 The game
-The initial configuration of the Breakout game appears in the left image below. The colored rectangles in the top part of the screen are bricks in a wall: two rows each of red, orange, yellow, green, and cyan. These colors are not required; you can choose to be creative about the colors and the size of the bricks and the number of bricks in each row.
+The initial configuration of the Breakout game appears in the image below. The colored rectangles aka the bricks (red, orange, yellow, green, cyan, magenta, pink) are the targets.
 
 The slightly larger rectangle at the bottom is the paddle. The paddle is in a fixed position in the vertical dimension, but moves back and forth horizontally across the screen along with the mouse until it reaches the edge of its space.
 
-Example of breakout game
+The ball will be released at an random angle and your job is to move the paddle with your mouse to prevent the ball from going off the screen and hit all the bricks. When the ball hits a brick it will disapear The ball will have 3 lives.
 
-A complete Breakout game consists of three turns, or lives. On each turn, a ball is launched from the center of the window towards the bottom of the screen at a random angle. That ball bounces off of the paddle and the “side walls” of the world (left, right, and top). Thus, after two bounces — one off of the paddle and one off of the right side — the ball might have the trajectory shown in the second diagram. (Note that the dotted line is illustrative to show the ball’s path. The dotted line won’t appear on the screen.)
+Note: the trajectory of the ball will change based on where it hits the brick, the paddle or the sides of the screen. 
 
-In the second diagram, the ball is about to collide with one of the bricks on the bottom row of the brick wall. When that happens, the ball bounces just as it does on any other collision, but the brick disappears. The third diagram shows what the game looks like after that collision and after you have moved the paddle to line it up with the oncoming ball. The play continues in this way until one of the following conditions occurs:
+## You will lose if: 
+- you run out of lives (ball goes off the screen 3 times) 
 
-The ball moves below the paddle, which means that the player must have missed it with the paddle. In this case, the turn ends and the next ball is served, assuming that you have not already exhausted your allotment of three turns. If you have, the game ends in a loss.
-The last brick is eliminated. In this case, the game ends immediately, and you can retire in victory.
+## You will win if: 
+- you hit all the bricks/ no more bricks on the screen
+
+<img width="594" alt="Screen Shot 2021-12-15 at 3 16 00 PM" src="https://user-images.githubusercontent.com/54856485/146266126-1c84a771-e1a2-47b0-9190-9d0f368141e5.png">
+
+## How to Play 
+You can run this code in a text editor or terminal
